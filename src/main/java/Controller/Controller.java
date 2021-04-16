@@ -4,6 +4,7 @@ import Model.Field;
 import Model.Sides;
 import View.Main;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
@@ -36,6 +37,7 @@ public class Controller {
                 labels[i][j] = new Label();
                 gridPane.add(labels[i][j], i, j);
                 labels[i][j].setText(field.get(j, i));
+                labels[i][j].getStyleClass().add("chip");
                 labels[i][j].setVisible(true);
             }
         }

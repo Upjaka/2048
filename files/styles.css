@@ -1,3 +1,11 @@
 .background {
     -fx-background-color: linen;
 }
+
+.infoLabel {
+    -fx-background-color: lightgrey;
+}
+
+.chip {
+    -fx-background-color: lightgrey;
+}

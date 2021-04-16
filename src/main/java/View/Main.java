@@ -21,7 +21,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/GameScreen.fxml"));
 
-        Scene startScene = new Scene(root, 400, 600);
+        Scene startScene = new Scene(root, 400, 570);
         stage = primaryStage;
         stage.setScene(startScene);
         stage.setTitle("2048");

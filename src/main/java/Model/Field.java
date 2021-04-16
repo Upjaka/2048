@@ -143,7 +143,6 @@ public class Field {
             }
         }
         addRandom();
-        addRandom();
     }
 
     public Pair nextElem(int x, int y, Sides side) {
