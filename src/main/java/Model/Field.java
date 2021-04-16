@@ -1,16 +1,11 @@
 package Model;
 
+import View.Main;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-
-enum Sides {
-    RIGHT,
-    LEFT,
-    UP,
-    DOWN
-}
 
 public class Field {
     private final int size = 4;
@@ -147,6 +142,8 @@ public class Field {
                 }
             }
         }
+        addRandom();
+        addRandom();
     }
 
     public Pair nextElem(int x, int y, Sides side) {
@@ -189,6 +186,18 @@ public class Field {
         }
     }
 
+    public String getScores() {
+        int sum = 0;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (field[i][j] != 0) sum += Math.pow(2.0, field[i][j]);
+            }
+        }
+        return String.valueOf(sum);
+    }
+
+    public int getSize() {return size;}
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -200,5 +209,9 @@ public class Field {
             sb.append('\n');
         }
         return sb.toString();
+    }
+
+    public String get(int i, int j) {
+        return field[i][j] == 0 ? "" : String.valueOf((Math.round(Math.pow(2.0, field[i][j]))));
     }
 }
