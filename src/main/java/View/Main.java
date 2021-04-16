@@ -19,8 +19,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        URL startScreenUrl = new File("files/GameScreen.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(startScreenUrl);
+        Parent root = FXMLLoader.load(getClass().getResource("/GameScreen.fxml"));
 
         Scene startScene = new Scene(root, 400, 600);
         stage = primaryStage;
