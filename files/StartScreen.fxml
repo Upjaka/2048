@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane styleClass="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0"
+            prefWidth="351.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controller.Controller">
+    <center>
+        <VBox alignment="TOP_CENTER" prefHeight="460.0" prefWidth="263.0" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="223.0" fitWidth="216.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@field.png"/>
+            </ImageView>
+            <Label text="4x4"/>
+            <Button fx:id="startButton" text="Начать игру" styleClass="RecordsButton" onAction="#startButtonClicked"/>
+        </VBox>
+    </center>
+    <top>
+        <Label text="2048" BorderPane.alignment="CENTER"/>
+    </top>
+    <bottom>
+        <Button fx:id="recordsButton" text="Таблица рекордов" BorderPane.alignment="CENTER" styleClass="RecordsButton">
+        </Button>
+    </bottom>
+</BorderPane>
