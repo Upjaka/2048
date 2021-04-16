@@ -30,7 +30,7 @@ public class Main extends Application {
     }
 
     public static void startGame() throws IOException {
-        URL GameScreenUrl = new File("files/GameScreen.fxml").toURI().toURL();
+        URL GameScreenUrl = new File("/GameScreen.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(GameScreenUrl);
         stage.getScene().setRoot(root);
     }
