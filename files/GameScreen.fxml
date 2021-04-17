@@ -19,14 +19,17 @@
         <Label styleClass="title" text="2048" BorderPane.alignment="CENTER"/>
     </top>
     <center>
-        <VBox BorderPane.alignment="CENTER">
-            <AnchorPane styleClass="anchorPane">
-                <Button fx:id="restartButton" styleClass="startButton" layoutX="55.0" layoutY="83.0"
-                        onAction="#startButtonClicked"  text="START GAME">
+        <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+            <AnchorPane styleClass="anchorPane" BorderPane.alignment="CENTER">
+                <Button fx:id="restartButton" styleClass="startButton"
+                        AnchorPane.bottomAnchor="15" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="85"
+                        onAction="#startButtonClicked" text="START GAME">
                 </Button>
-                <Label fx:id="scores" styleClass="infoLabel" layoutX="213.0" layoutY="36.0" text="Scores:">
+                <Label fx:id="scores" styleClass="infoLabel" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0"
+                       text="Scores:">
                 </Label>
-                <Label styleClass="infoLabel" layoutX="213.0" layoutY="90.0" text="Record:">
+                <Label styleClass="infoLabel" AnchorPane.bottomAnchor="23.6"
+                       AnchorPane.rightAnchor="0.0" text="Record:">
                 </Label>
             </AnchorPane>
             <StackPane styleClass="stackPane">

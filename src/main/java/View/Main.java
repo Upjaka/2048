@@ -28,9 +28,9 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void startGame() throws IOException {
+    /*public static void startGame() throws IOException {
         URL GameScreenUrl = new File("/GameScreen.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(GameScreenUrl);
         stage.getScene().setRoot(root);
-    }
+    }*/
 }
