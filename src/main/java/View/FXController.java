@@ -38,7 +38,6 @@ public class FXController {
                     labels[i][j].setText(field.get(j, i).toString());
                     labels[i][j].getStyleClass().add("chip2");
                 }
-                labels[i][j].setPrefSize(65.0, 65.0);
             }
         }
         scores.setText("Scores: " + field.getScores());

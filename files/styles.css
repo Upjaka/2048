@@ -1,5 +1,10 @@
 .background {
     -fx-background-color: rgba(255, 239, 213, 0.5);
+    -fx-pref-width: 400px;
+    -fx-pref-height: 570px;
+    -fx-min-width: 320px;
+    -fx-min-height: 450px;
+    -fx-padding: 20 20 20 20;
 }
 
 .title {
@@ -22,6 +27,18 @@
     -fx-text-fill: #5e5757;
 }
 
+.gridPane {
+    -fx-pref-width: 400px;
+    -fx-pref-height: 300px;
+    -fx-vgap: 7px;
+    -fx-hgap: 7px;
+    -fx-min-width: 400px;
+    -fx-min-height: 300px;
+    -fx-max-width: 400px;
+    -fx-max-height: 300px;
+    -fx-padding: 10 58 9 60;
+}
+
 .startButton {
     -fx-background-radius: 8;
     -fx-font-size: 18px;
@@ -29,6 +46,8 @@
     -fx-font-weight: bold;
     -fx-text-fill: eae7e7;
     -fx-background-color: orange;
+    -fx-pref-width: 124px;
+    -fx-pref-height: 42px;
 }
 
 .chip {
@@ -39,46 +58,40 @@
     -fx-alignment: center;
     -fx-pref-width: 65px;
     -fx-pref-height: 65px;
+    -fx-text-fill: white;
 }
 .chip2 {
     -fx-background-color: eee4da;
+    -fx-text-fill: black;
 }
 .chip4 {
     -fx-background-color: ede0c8;
+    -fx-text-fill: black;
 }
 .chip8 {
     -fx-background-color: f2b179;
-    -fx-text-fill: white;
 }
 .chip16 {
     -fx-background-color: f59762;
-        -fx-text-fill: white;
 }
 .chip32 {
     -fx-background-color: f67c5f;
-    -fx-text-fill: white;
 }
 .chip64 {
     -fx-background-color: f65e3b;
-    -fx-text-fill: white;
 }
 .chip128 {
     -fx-background-color: edcf72;
-    -fx-text-fill: white;
 }
 .chip256 {
     -fx-background-color: eccb60;
-    -fx-text-fill: white;
 }
 .chip512 {
     -fx-background-color: edc850;
-    -fx-text-fill: white;
 }
 .chip1024 {
     -fx-background-color: edc642;
-    -fx-text-fill: white;
 }
 .chip2048 {
     -fx-background-color: edc22e;
-    -fx-text-fill: white;
 }
