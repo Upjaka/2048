@@ -1,4 +1,4 @@
-package Controller;
+package View;
 
 import Model.Field;
 import Model.Sides;
@@ -9,7 +9,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 
-public class Controller {
+public class FXController {
     private static Field field;
     private static Label[][] labels;
 

@@ -16,7 +16,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="450.0" minWidth="320.0"
             prefHeight="570.0" prefWidth="400.0" styleClass="background" stylesheets="@styles.css"
             xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Controller.Controller" onKeyReleased="#keyReleased">
+            fx:controller="View.FXController" onKeyReleased="#keyReleased">
     <top>
         <Label styleClass="title" text="2048" BorderPane.alignment="CENTER">
         </Label>

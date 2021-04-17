@@ -37,6 +37,8 @@
     -fx-font-weight: bold;
     -fx-font-size: 24px;
     -fx-alignment: center;
+    -fx-pref-width: 65px;
+    -fx-pref-height: 65px;
 }
 .chip2 {
     -fx-background-color: eee4da;
