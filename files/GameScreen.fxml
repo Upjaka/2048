@@ -12,63 +12,57 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="450.0" minWidth="320.0" onKeyPressed="#keyPressed" prefHeight="570.0" prefWidth="400.0" styleClass="background" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="450.0" minWidth="320.0"
+            prefHeight="570.0" prefWidth="400.0" styleClass="background" stylesheets="@styles.css"
+            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controller.Controller" onKeyReleased="#keyReleased">
     <top>
-        <Label text="2048" textFill="#5e5757" BorderPane.alignment="CENTER">
-            <font>
-                <Font name="System Bold" size="32.0" />
-            </font>
+        <Label styleClass="title" text="2048" BorderPane.alignment="CENTER">
         </Label>
     </top>
     <center>
         <VBox prefHeight="458.0" prefWidth="380.0" BorderPane.alignment="CENTER">
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="400.0">
-                <Button fx:id="restartButton" layoutX="55.0" layoutY="83.0" mnemonicParsing="false" onAction="#startButtonClicked" prefHeight="42.0" prefWidth="124.0" style="-fx-background-color: orange;" styleClass="startButton" text="START THE GAME" textFill="#eae7e7" wrapText="true">
-                    <font>
-                        <Font name="Calibri Bold" size="14.0" />
-                    </font>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                        prefHeight="150.0" prefWidth="400.0">
+                <Button fx:id="restartButton" layoutX="55.0" layoutY="83.0" mnemonicParsing="false"
+                        onAction="#startButtonClicked" prefHeight="42.0" prefWidth="124.0" styleClass="startButton"
+                        text="START GAME">
                 </Button>
-                <Label fx:id="scores" alignment="TOP_LEFT" contentDisplay="TOP" graphicTextGap="10.0" layoutX="213.0" layoutY="36.0" prefHeight="27.0" prefWidth="146.0" styleClass="infoLabel" text="Scores:">
-                    <font>
-                        <Font name="Arial Black" size="18.0" />
-                    </font>
+                <Label fx:id="scores" layoutX="213.0" layoutY="36.0" styleClass="infoLabel" text="Scores:">
                 </Label>
-                <Label layoutX="213.0" layoutY="90.0" prefHeight="27.0" prefWidth="145.0" styleClass="infoLabel" text="Record:">
-                    <font>
-                        <Font name="Arial Black" size="18.0" />
-                    </font>
+                <Label layoutX="213.0" layoutY="90.0" styleClass="infoLabel" text="Record:">
                 </Label>
             </AnchorPane>
-            <StackPane prefHeight="150.0" prefWidth="200.0">
+            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="400.0">
                 <ImageView fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@field.png" />
+                    <Image url="@field.png"/>
                 </ImageView>
-                <GridPane fx:id="gridPane" alignment="CENTER" gridLinesVisible="true" hgap="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" vgap="7.0">
+                <GridPane fx:id="gridPane" alignment="CENTER" hgap="7.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                          minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" vgap="7.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0"/>
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <padding>
-                        <Insets bottom="9.0" left="60.0" right="58.0" top="10.0" />
+                        <Insets bottom="9.0" left="60.0" right="58.0" top="10.0"/>
                     </padding>
                     <opaqueInsets>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
                     </opaqueInsets>
                 </GridPane>
             </StackPane>
         </VBox>
     </center>
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 </BorderPane>

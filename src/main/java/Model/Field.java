@@ -1,15 +1,11 @@
 package Model;
 
-import View.Main;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class Field {
     private final int size = 4;
     private final int[][] field;
+    private int[][] before;
     private final Random random = new Random(size);
 
     public Field() {
@@ -58,7 +54,8 @@ public class Field {
     public boolean isLose() {
         for (int x = 0; x < field.length; x++) {
             for (int y = 0; y < field.length; y++) {
-                for (int i : getNeighbors(x, y).values()) {
+                if (field[x][y] != 0) return false;
+                for (int i : getNeighbors(x, y)) {
                     if (i == field[x][y]) return false;
                 }
             }
@@ -66,14 +63,14 @@ public class Field {
         return true;
     }
 
-    private Map<Sides, Integer> getNeighbors(int x, int y) {
-        Map<Sides, Integer> result = new HashMap<>();
+    private List<Integer> getNeighbors(int x, int y) {
+        List<Integer> result = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (i - 1 != -1) result.put(Sides.UP, field[i - 1][j]);
-                if (j - 1 != -1) result.put(Sides.LEFT, field[i][j - 1]);
-                if (i + 1 != size) result.put(Sides.DOWN, field[i + 1][j]);
-                if (j + 1 != size) result.put(Sides.RIGHT, field[i][j + 1]);
+                if (i - 1 != -1) result.add(field[i - 1][j]);
+                if (j - 1 != -1) result.add(field[i][j - 1]);
+                if (i + 1 != size) result.add(field[i + 1][j]);
+                if (j + 1 != size) result.add(field[i][j + 1]);
             }
         }
         return result;
@@ -84,6 +81,7 @@ public class Field {
     }
 
     public void moveAll(Sides side) {
+        boolean modified = false;
         switch (side) {
             case RIGHT -> {
                 for (int i = 0; i < size; i++) {
@@ -94,6 +92,7 @@ public class Field {
                             if (!pair.equals(next)) {
                                 field[next.x][next.y] = field[next.x][next.y] == 0 ? field[i][j] : field[i][j] + 1;
                                 field[i][j] = 0;
+                                modified = true;
                             }
                         }
                     }
@@ -108,6 +107,7 @@ public class Field {
                             if (!pair.equals(next)) {
                                 field[next.x][next.y] = field[next.x][next.y] == 0 ? field[i][j] : field[i][j] + 1;
                                 field[i][j] = 0;
+                                modified = true;
                             }
                         }
                     }
@@ -122,6 +122,7 @@ public class Field {
                             if (!pair.equals(next)) {
                                 field[next.x][next.y] = field[next.x][next.y] == 0 ? field[i][j] : field[i][j] + 1;
                                 field[i][j] = 0;
+                                modified = true;
                             }
                         }
                     }
@@ -136,13 +137,14 @@ public class Field {
                             if (!pair.equals(next)) {
                                 field[next.x][next.y] = field[next.x][next.y] == 0 ? field[i][j] : field[i][j] + 1;
                                 field[i][j] = 0;
+                                modified = true;
                             }
                         }
                     }
                 }
             }
         }
-        addRandom();
+        if (modified) addRandom();
     }
 
     public Pair nextElem(int x, int y, Sides side) {
@@ -210,7 +212,15 @@ public class Field {
         return sb.toString();
     }
 
-    public String get(int i, int j) {
-        return field[i][j] == 0 ? "" : String.valueOf((Math.round(Math.pow(2.0, field[i][j]))));
+    public Integer get(int i, int j) {
+        return pow(field[i][j]);
+    }
+
+    public int pow(int x) {
+        int result = 1;
+        for (int i = 0; i < x; i++) {
+            result *= 2;
+        }
+        return result;
     }
 }
