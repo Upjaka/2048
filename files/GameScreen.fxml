@@ -19,8 +19,8 @@
         <Label styleClass="title" text="2048" BorderPane.alignment="CENTER"/>
     </top>
     <center>
-        <VBox prefHeight="458.0" prefWidth="380.0" BorderPane.alignment="CENTER">
-            <AnchorPane prefHeight="150.0" prefWidth="400.0">
+        <VBox BorderPane.alignment="CENTER">
+            <AnchorPane styleClass="anchorPane">
                 <Button fx:id="restartButton" styleClass="startButton" layoutX="55.0" layoutY="83.0"
                         onAction="#startButtonClicked"  text="START GAME">
                 </Button>
@@ -29,15 +29,15 @@
                 <Label styleClass="infoLabel" layoutX="213.0" layoutY="90.0" text="Record:">
                 </Label>
             </AnchorPane>
-            <StackPane prefHeight="300.0" prefWidth="400.0">
-                <ImageView fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+            <StackPane styleClass="stackPane">
+                <ImageView fitHeight="300.0" fitWidth="300.0">
                     <Image url="@field.png"/>
                 </ImageView>
                 <GridPane fx:id="gridPane" styleClass="gridPane" alignment="CENTER">
                     <columnConstraints>
-                        <ColumnConstraints prefWidth="65"/>
-                        <ColumnConstraints prefWidth="65"/>
-                        <ColumnConstraints prefWidth="65"/>
+                        <ColumnConstraints prefWidth="65.0"/>
+                        <ColumnConstraints prefWidth="65.0"/>
+                        <ColumnConstraints prefWidth="65.0"/>
                         <ColumnConstraints prefWidth="65.0"/>
                     </columnConstraints>
                     <rowConstraints>
