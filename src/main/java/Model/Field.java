@@ -5,7 +5,6 @@ import java.util.*;
 public class Field {
     private final int size = 4;
     private final int[][] field;
-    private int[][] before;
     private final Random random = new Random();
 
     public Field() {

@@ -44,10 +44,11 @@ public class FXController {
     }
 
     public void keyReleased(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.UP || keyEvent.getCode() == KeyCode.W) field.moveAll(Sides.UP);
-        if (keyEvent.getCode() == KeyCode.LEFT || keyEvent.getCode() == KeyCode.A) field.moveAll(Sides.LEFT);
-        if (keyEvent.getCode() == KeyCode.DOWN || keyEvent.getCode() == KeyCode.S) field.moveAll(Sides.DOWN);
-        if (keyEvent.getCode() == KeyCode.RIGHT || keyEvent.getCode() == KeyCode.D) field.moveAll(Sides.RIGHT);
+        final KeyCode keyCode = keyEvent.getCode();
+        if (keyCode == KeyCode.UP || keyCode == KeyCode.W) field.moveAll(Sides.UP);
+        if (keyCode == KeyCode.LEFT || keyCode == KeyCode.A) field.moveAll(Sides.LEFT);
+        if (keyCode == KeyCode.DOWN || keyCode == KeyCode.S) field.moveAll(Sides.DOWN);
+        if (keyCode == KeyCode.RIGHT || keyCode == KeyCode.D) field.moveAll(Sides.RIGHT);
         updateScene();
     }
 
