@@ -19,10 +19,6 @@ public class FXController {
     @FXML
     private Rectangle rectangle;
     @FXML
-    private Button startButton;
-    @FXML
-    private Button recordsButton;
-    @FXML
     private Button restartButton;
     @FXML
     private GridPane gridPane;
