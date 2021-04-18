@@ -60,9 +60,9 @@ public class Field {
     }
 
     public boolean isLose() {
-        for (int x = 0; x < field.length; x++) {
-            for (int y = 0; y < field.length; y++) {
-                if (field[x][y] != 0) return false;
+        for (int x = 0; x < size; x++) {
+            for (int y = 0; y < size; y++) {
+                if (field[x][y] == 0) return false;
                 for (int i : getNeighbors(x, y)) {
                     if (i == field[x][y]) return false;
                 }
@@ -71,16 +71,12 @@ public class Field {
         return true;
     }
 
-    private List<Integer> getNeighbors(int x, int y) {
+    public List<Integer> getNeighbors(int x, int y) {
         List<Integer> result = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                if (i - 1 != -1) result.add(field[i - 1][j]);
-                if (j - 1 != -1) result.add(field[i][j - 1]);
-                if (i + 1 != size) result.add(field[i + 1][j]);
-                if (j + 1 != size) result.add(field[i][j + 1]);
-            }
-        }
+        if (y - 1 != -1) result.add(field[x][y - 1]);
+        if (x - 1 != -1) result.add(field[x - 1][y]);
+        if (x + 1 != size) result.add(field[x + 1][y]);
+        if (y + 1 != size) result.add(field[x][y + 1]);
         return result;
     }
 
@@ -120,7 +116,6 @@ public class Field {
                 }
             }
         }
-        System.out.println(modified);
         if (modified) addRandom();
     }
 
