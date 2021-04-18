@@ -21,6 +21,14 @@ public class Field {
         return pow(field[i][j]);
     }
 
+    private int pow(int x) {
+        int result = 1;
+        for (int i = 0; i < x; i++) {
+            result *= 2;
+        }
+        return result;
+    }
+
     public int[][] getField() {
         return field;
     }
@@ -193,13 +201,5 @@ public class Field {
             sb.append('\n');
         }
         return sb.toString();
-    }
-
-    public int pow(int x) {
-        int result = 1;
-        for (int i = 0; i < x; i++) {
-            result *= 2;
-        }
-        return result;
     }
 }
