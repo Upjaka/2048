@@ -32,6 +32,12 @@
     -fx-text-fill: #5e5757;
 }
 
+.gameOver {
+    -fx-font-size: 30;
+    -fx-font-family: "Arial Black";
+    -fx-text-fill: #5e5757;
+}
+
 .infoLabel {
     -fx-background-color: lightgrey;
     -fx-background-radius: 5;

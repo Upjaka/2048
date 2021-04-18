@@ -79,13 +79,17 @@ class FieldTest {
     }
 
     @Test
-    void nextElem() {
+    void move() {
         field.clear();
         field.add(0, 3);
-        assertEquals(new Pair(0,0), field.nextElem(0, 3, Sides.LEFT));
-        field.add(0, 0);
-        assertEquals(new Pair(0,0), field.nextElem(0, 3, Sides.LEFT));
-        field.add(0, 1, 2);
-        assertEquals(new Pair(0,2), field.nextElem(0, 3, Sides.LEFT));
+        assertTrue(field.move(0, 3, Sides.LEFT));
+        assertTrue(Arrays.equals(new int[]{1,0,0,0}, field.getField()[0]));
+        field.add(0, 3);
+        assertTrue(field.move(0, 3, Sides.LEFT));
+        assertTrue(Arrays.equals(new int[]{2,0,0,0}, field.getField()[0]));
+        field.add(0, 2);
+        assertTrue(field.move(0, 2, Sides.LEFT));
+        assertTrue(Arrays.equals(new int[]{2,1,0,0}, field.getField()[0]));
+        assertFalse(field.move(0,1, Sides.LEFT));
     }
 }

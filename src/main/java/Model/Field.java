@@ -5,15 +5,20 @@ import java.util.*;
 public class Field {
     private final int size = 4;
     private final int[][] field;
-    private final Random random = new Random();
+    private final Random random;
 
     public Field() {
+        random = new Random();
         field = new int[size][size];
         for (int[] ints : field) {
             Arrays.fill(ints, 0);
         }
         addRandom();
         addRandom();
+    }
+
+    public Integer get(int i, int j) {
+        return pow(field[i][j]);
     }
 
     public int[][] getField() {
@@ -24,10 +29,6 @@ public class Field {
         if (x >= 0 && x < size && y >= 0 && y < size) {
             field[x][y] = 1;
         }
-    }
-
-    public void add(int x, int y, int n) {
-        field[x][y] = n;
     }
 
     public void addRandom() {
@@ -85,105 +86,86 @@ public class Field {
             case RIGHT -> {
                 for (int i = 0; i < size; i++) {
                     for (int j = size - 2; j >= 0; j--) {
-                        if (field[i][j] != 0) {
-                            final Pair next = nextElem(i, j, Sides.RIGHT);
-                            final Pair pair = new Pair(i, j);
-                            if (!pair.equals(next)) {
-                                field[next.x][next.y] = field[next.x][next.y] == 0 ? field[i][j] : field[i][j] + 1;
-                                field[i][j] = 0;
-                                modified = true;
-                            }
-                        }
+                        if (field[i][j] != 0 && move(i, j, Sides.RIGHT)) modified = true;
                     }
                 }
             }
             case LEFT -> {
                 for (int i = 0; i < size; i++) {
                     for (int j = 1; j < size; j++) {
-                        if (field[i][j] != 0) {
-                            final Pair next = nextElem(i, j, Sides.LEFT);
-                            final Pair pair = new Pair(i, j);
-                            if (!pair.equals(next)) {
-                                field[next.x][next.y] = field[next.x][next.y] == 0 ? field[i][j] : field[i][j] + 1;
-                                field[i][j] = 0;
-                                modified = true;
-                            }
-                        }
+                        if (field[i][j] != 0 && move(i, j, Sides.LEFT)) modified = true;
                     }
                 }
             }
             case UP -> {
                 for (int i = 1; i < size; i++) {
                     for (int j = 0; j < size; j++) {
-                        if (field[i][j] != 0) {
-                            final Pair next = nextElem(i, j, Sides.UP);
-                            final Pair pair = new Pair(i, j);
-                            if (!pair.equals(next)) {
-                                field[next.x][next.y] = field[next.x][next.y] == 0 ? field[i][j] : field[i][j] + 1;
-                                field[i][j] = 0;
-                                modified = true;
-                            }
-                        }
+                        if (field[i][j] != 0 && move(i, j, Sides.UP)) modified = true;
                     }
                 }
             }
             case DOWN -> {
                 for (int i = size - 2; i >= 0; i--) {
                     for (int j = 0; j < size; j++) {
-                        if (field[i][j] != 0) {
-                            final Pair next = nextElem(i, j, Sides.DOWN);
-                            final Pair pair = new Pair(i, j);
-                            if (!pair.equals(next)) {
-                                field[next.x][next.y] = field[next.x][next.y] == 0 ? field[i][j] : field[i][j] + 1;
-                                field[i][j] = 0;
-                                modified = true;
-                            }
-                        }
+                        if (field[i][j] != 0 && move(i, j, Sides.DOWN)) modified = true;
                     }
                 }
             }
         }
+        System.out.println(modified);
         if (modified) addRandom();
     }
 
-    public Pair nextElem(int x, int y, Sides side) {
+    public boolean move(int x, int y, Sides side) {
+        int[] newXY = new int[]{x, y};
         switch (side) {
             case DOWN -> {
-                for (int i = x + 1; i < size; i++) {
-                    if (field[i][y] != 0) {
-                        return field[i][y] == field[x][y] ? new Pair(i, y) : new Pair(i - 1, y);
+                for (int i = x + 1; i <= size; i++) {
+                    if (i == size) {
+                        newXY[0] = size - 1;
+                    } else if (field[i][y] != 0) {
+                        newXY[0] = field[i][y] == field[x][y] ? i : i - 1;
+                        break;
                     }
                 }
-                return new Pair(size - 1, y);
             }
             case UP -> {
-                for (int i = x - 1; i >= 0; i--) {
-                    if (field[i][y] != 0) {
-                        return field[i][y] == field[x][y] ? new Pair(i, y) : new Pair(i + 1, y);
+                for (int i = x - 1; i >= -1; i--) {
+                    if (i == -1) {
+                        newXY[0] = 0;
+                    } else if (field[i][y] != 0) {
+                        newXY[0] = field[i][y] == field[x][y] ? i : i + 1;
+                        break;
                     }
                 }
-                return new Pair(0, y);
             }
             case RIGHT -> {
-                for (int j = y + 1; j < size; j++) {
-                    if (field[x][j] != 0) {
-                        return field[x][j] == field[x][y] ? new Pair(x, j) : new Pair(x, j - 1);
+                for (int j = y + 1; j <= size; j++) {
+                    if (j == size) {
+                        newXY[1] = size - 1;
+                    } else if (field[x][j] != 0) {
+                        newXY[1] = field[x][j] == field[x][y] ? j : j - 1;
+                        break;
                     }
                 }
-                return new Pair(x, size - 1);
             }
             case LEFT -> {
-                for (int j = y - 1; j >= 0; j--) {
-                    if (field[x][j] != 0) {
-                        return field[x][j] == field[x][y] ? new Pair(x, j) : new Pair(x, j + 1);
+                for (int j = y - 1; j >= -1; j--) {
+                    if (j == -1) {
+                        newXY[1] = 0;
+                    } else if (field[x][j] != 0) {
+                        newXY[1] = field[x][j] == field[x][y] ? j : j + 1;
+                        break;
                     }
                 }
-                return new Pair(x, 0);
-            }
-            default -> {
-                return null;
             }
         }
+        if (x != newXY[0] || y != newXY[1]) {
+            field[newXY[0]][newXY[1]] = field[newXY[0]][newXY[1]] == 0 ? field[x][y] : field[x][y] + 1;
+            field[x][y] = 0;
+            return true;
+        }
+        return false;
     }
 
     public String getScores() {
@@ -196,7 +178,9 @@ public class Field {
         return String.valueOf(sum);
     }
 
-    public int getSize() {return size;}
+    public int getSize() {
+        return size;
+    }
 
     @Override
     public String toString() {
@@ -209,10 +193,6 @@ public class Field {
             sb.append('\n');
         }
         return sb.toString();
-    }
-
-    public Integer get(int i, int j) {
-        return pow(field[i][j]);
     }
 
     public int pow(int x) {

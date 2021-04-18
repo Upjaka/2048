@@ -8,11 +8,16 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Rectangle;
 
 public class FXController {
     private static Field field;
     private static Label[][] labels;
 
+    @FXML
+    private Label gameOver;
+    @FXML
+    private Rectangle rectangle;
     @FXML
     private Button startButton;
     @FXML
@@ -65,5 +70,9 @@ public class FXController {
             }
         }
         scores.setText("Scores: " + field.getScores());
+        if (field.isLose()) {
+            rectangle.setVisible(true);
+            gameOver.setVisible(true);
+        }
     }
 }

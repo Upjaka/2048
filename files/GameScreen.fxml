@@ -11,32 +11,32 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" styleClass="background" stylesheets="@styles.css"
-            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="View.FXController" onKeyReleased="#keyReleased">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#keyReleased" styleClass="background"
+            stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="View.FXController">
     <top>
         <Label styleClass="title" text="2048" BorderPane.alignment="CENTER"/>
     </top>
     <center>
         <VBox alignment="CENTER" BorderPane.alignment="CENTER">
             <AnchorPane styleClass="anchorPane" BorderPane.alignment="CENTER">
-                <Button fx:id="restartButton" styleClass="startButton"
-                        AnchorPane.bottomAnchor="15" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="85"
-                        onAction="#startButtonClicked" text="START GAME">
+                <Button fx:id="restartButton" onAction="#startButtonClicked" styleClass="startButton" text="START GAME"
+                        AnchorPane.bottomAnchor="15" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="85">
                 </Button>
-                <Label fx:id="scores" styleClass="infoLabel" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0"
-                       text="Scores:">
+                <Label fx:id="scores" styleClass="infoLabel" text="Scores:" AnchorPane.rightAnchor="0.0"
+                       AnchorPane.topAnchor="32.0">
                 </Label>
-                <Label styleClass="infoLabel" AnchorPane.bottomAnchor="23.6"
-                       AnchorPane.rightAnchor="0.0" text="Record:">
+                <Label styleClass="infoLabel" text="Record:" AnchorPane.bottomAnchor="23.6"
+                       AnchorPane.rightAnchor="0.0">
                 </Label>
             </AnchorPane>
             <StackPane styleClass="stackPane">
                 <ImageView fitHeight="300.0" fitWidth="300.0">
                     <Image url="@field.png"/>
                 </ImageView>
-                <GridPane fx:id="gridPane" styleClass="gridPane" alignment="CENTER">
+                <GridPane fx:id="gridPane" alignment="CENTER" styleClass="gridPane">
                     <columnConstraints>
                         <ColumnConstraints prefWidth="65.0"/>
                         <ColumnConstraints prefWidth="65.0"/>
@@ -50,6 +50,8 @@
                         <RowConstraints prefHeight="65.0"/>
                     </rowConstraints>
                 </GridPane>
+                <Rectangle fx:id="rectangle" fill="WHITE" height="300.0" opacity="0.66" width="300.0" visible="false"/>
+                <Label fx:id="gameOver" styleClass="gameOver" text="Game Over" visible="false"/>
             </StackPane>
         </VBox>
     </center>
