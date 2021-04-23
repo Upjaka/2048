@@ -39,6 +39,16 @@ class FieldTest {
     }
 
     @Test
+    void addRandom1() {
+        for (int i = 0; i < 3; i++) {
+            Arrays.fill(field.getField()[i], 1);
+        }
+        field.getField()[3] = new int[] {0, 1, 1, 1};
+        field.addRandom();
+        assertTrue(Arrays.equals(field.getField()[3], new int[] {1, 1, 1, 1}));
+    }
+
+    @Test
     void isFull() {
         assertFalse(field.isFull());
         for (int[] ints : field.getField()) {

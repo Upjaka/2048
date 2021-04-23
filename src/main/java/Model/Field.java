@@ -52,13 +52,25 @@ public class Field {
 
     public void addRandom() {
         if (isFull()) return;
-        int x;
-        int y;
-        do {
-            x = random.nextInt(size - 1);
-            y = random.nextInt(size - 1);
-        } while (field[x][y] != 0);
-        field[x][y] = 1;
+        int count = 0;
+        for (int[] ints : field) {
+            for (int i : ints) {
+                if (i == 0) count++;
+            }
+        }
+        int n = random.nextInt(count);
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (field[i][j] == 0) {
+                    if (n == 0) {
+                        field[i][j] = 1;
+                        return;
+                    } else {
+                        n--;
+                    }
+                }
+            }
+        }
     }
 
     public boolean isFull() {

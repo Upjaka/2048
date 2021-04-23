@@ -49,7 +49,7 @@
                         <RowConstraints prefHeight="65.0"/>
                     </rowConstraints>
                 </GridPane>
-                <Rectangle fx:id="rectangle" fill="WHITE" height="300.0" opacity="0.66" visible="false" width="300.0"/>
+                <Rectangle fx:id="gameOverBackground" fill="WHITE" height="300.0" opacity="0.66" visible="false" width="300.0"/>
                 <Label fx:id="gameOver" styleClass="gameOver" text="Game Over" visible="false"/>
             </StackPane>
         </VBox>

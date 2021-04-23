@@ -19,7 +19,7 @@ public class FXController {
     @FXML
     private Label gameOver;
     @FXML
-    private Rectangle rectangle;
+    private Rectangle gameOverBackground;
     @FXML
     private Button restartButton;
     @FXML
@@ -36,7 +36,7 @@ public class FXController {
             for (int j = 0; j < field.getSize(); j++) {
                 labels[i][j] = new Label();
                 gridPane.add(labels[i][j], i, j);
-                stylizeLabel(i, j);
+                stylizeLabel(i, j) ;
             }
         }
         scores.setText("Scores: " + field.getScores());
@@ -45,6 +45,8 @@ public class FXController {
     public void backButtonClicked() {
         field.back();
         updateScene();
+        gameOverBackground.setVisible(false);
+        gameOver.setVisible(false);
     }
 
     public void keyReleased(KeyEvent keyEvent) {
@@ -65,7 +67,7 @@ public class FXController {
         }
         scores.setText("Scores: " + field.getScores());
         if (field.isLose()) {
-            rectangle.setVisible(true);
+            gameOverBackground.setVisible(true);
             gameOver.setVisible(true);
         }
     }
