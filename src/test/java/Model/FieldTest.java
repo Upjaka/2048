@@ -59,6 +59,7 @@ class FieldTest {
         }
         assertFalse(field.isLose());
     }
+
     @Test
     void isLose2() {
         for (int i = 0; i < field.getSize(); i++) {
@@ -74,7 +75,7 @@ class FieldTest {
         field.add(1, 2);
         field.add(2, 2);
         assertEquals(Arrays.asList(0, 0), field.getNeighbors(0, 0));
-        assertEquals(Arrays.asList(0,0,1,1), field.getNeighbors(1, 1));
+        assertEquals(Arrays.asList(0, 0, 1, 1), field.getNeighbors(1, 1));
     }
 
     @Test
@@ -99,6 +100,7 @@ class FieldTest {
         assertTrue(field.move(0, 2, Direction.LEFT));
         assertTrue(Arrays.equals(new int[]{2, 1, 0, 0}, field.getField()[0]));
     }
+
     @Test
     void move3() {
         field.add(0, 1);
@@ -112,6 +114,7 @@ class FieldTest {
         field.moveAll(Direction.LEFT);
         assertEquals((int) field.get(0, 0), 2);
     }
+
     @Test
     void moveAll1() {
         field.add(0, 0);
@@ -119,6 +122,7 @@ class FieldTest {
         assertTrue(field.moveAll(Direction.LEFT));
         assertTrue(Arrays.equals(new int[]{2, 0, 0, 0}, field.getField()[0]));
     }
+
     @Test
     void moveAll2() {
         field.add(0, 0, 2);
@@ -126,9 +130,10 @@ class FieldTest {
         assertTrue(field.moveAll(Direction.LEFT));
         assertTrue(Arrays.equals(new int[]{2, 1, 0, 0}, field.getField()[0]));
     }
+
     @Test
     void moveAll3() {
-        field.add(0, 0,2);
+        field.add(0, 0, 2);
         field.add(0, 1);
         field.add(0, 2);
         field.add(0, 3);
