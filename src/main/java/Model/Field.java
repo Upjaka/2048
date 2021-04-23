@@ -189,6 +189,12 @@ public class Field {
         return false;
     }
 
+    public void back() {
+        for (int i = 0; i < size; i++) {
+            field[i] = Arrays.copyOf(previous[i], size);
+        }
+    }
+
     public String getScores() {
         int sum = 0;
         for (int i = 0; i < size; i++) {

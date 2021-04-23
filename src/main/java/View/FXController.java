@@ -17,6 +17,8 @@ public class FXController {
     private static Label[][] labels;
 
     @FXML
+    private Button backButton;
+    @FXML
     private Label gameOver;
     @FXML
     private Rectangle rectangle;
@@ -36,14 +38,15 @@ public class FXController {
             for (int j = 0; j < field.getSize(); j++) {
                 labels[i][j] = new Label();
                 gridPane.add(labels[i][j], i, j);
-                labels[i][j].getStyleClass().add("chip");
-                if (field.get(i, j) != 0) {
-                    labels[i][j].setText(field.get(i, j).toString());
-                    labels[i][j].getStyleClass().add("chip2");
-                }
+                stylizeLabel(i, j);
             }
         }
         scores.setText("Scores: " + field.getScores());
+    }
+
+    public void backButtonClicked() {
+        field.back();
+        updateScene();
     }
 
     public void keyReleased(KeyEvent keyEvent) {
@@ -59,13 +62,7 @@ public class FXController {
         for (int i = 0; i < field.getSize(); i++) {
             for (int j = 0; j < field.getSize(); j++) {
                 labels[i][j].getStyleClass().removeAll(labels[i][j].getStyleClass());
-                if (field.get(i, j) != 0) {
-                    labels[i][j].setText(field.get(i, j).toString());
-                    labels[i][j].getStyleClass().addAll("chip", "chip" + field.get(i, j));
-                    if (!field.getPrevious(i, j).equals(field.get(i, j))) createCheepAnimation(i, j);
-                } else {
-                    labels[i][j].setText("");
-                }
+                stylizeLabel(i, j);
             }
         }
         scores.setText("Scores: " + field.getScores());
@@ -82,5 +79,15 @@ public class FXController {
         st.setFromY(0.1);
         st.setToY(1.0);
         st.play();
+    }
+
+    private void stylizeLabel(int i, int j) {
+        if (field.get(i, j) != 0) {
+            labels[i][j].setText(field.get(i, j).toString());
+            labels[i][j].getStyleClass().addAll("chip", "chip" + field.get(i, j));
+            if (!field.getPrevious(i, j).equals(field.get(i, j))) createCheepAnimation(i, j);
+        } else {
+            labels[i][j].setText("");
+        }
     }
 }
