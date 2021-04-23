@@ -17,8 +17,6 @@ public class FXController {
     private static Label[][] labels;
 
     @FXML
-    private Button backButton;
-    @FXML
     private Label gameOver;
     @FXML
     private Rectangle rectangle;

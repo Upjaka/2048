@@ -28,7 +28,7 @@
                 <Label fx:id="scores" styleClass="infoLabel" text="Scores:"
                        AnchorPane.rightAnchor="0" AnchorPane.topAnchor="32">
                 </Label>
-                <Button fx:id="backButton" styleClass="startButton" text="BACK" onAction="#backButtonClicked"
+                <Button styleClass="startButton" text="BACK" onAction="#backButtonClicked"
                         AnchorPane.bottomAnchor="15" AnchorPane.rightAnchor="0"/>
             </AnchorPane>
             <StackPane styleClass="stackPane">
