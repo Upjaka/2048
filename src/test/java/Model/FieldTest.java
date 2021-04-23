@@ -1,11 +1,9 @@
 package Model;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,21 +16,19 @@ class FieldTest {
         field.clear();
     }
 
-    @AfterEach
-    void after() {
-        field.clear();
-    }
-
     @Test
     void add() {
         field.add(0, 0);
         assertTrue(Arrays.equals(field.getField()[0], new int[]{1, 0, 0, 0}));
+
         field.add(-1, -1);
         assertTrue(Arrays.equals(field.getField()[0], new int[]{1, 0, 0, 0}));
     }
 
     @Test
     void addRandom() {
+        field.addRandom();
+        field.addRandom();
         int count = 0;
         for (int[] ints : field.getField()) {
             for (int i : ints) {
@@ -54,13 +50,17 @@ class FieldTest {
     @Test
     void isLose() {
         assertFalse(field.isLose());
+    }
 
+    @Test
+    void isLose1() {
         for (int[] ints : field.getField()) {
             Arrays.fill(ints, 1);
         }
         assertFalse(field.isLose());
-
-        field.clear();
+    }
+    @Test
+    void isLose2() {
         for (int i = 0; i < field.getSize(); i++) {
             field.getField()[i] = i % 2 == 0 ? new int[]{1, 2, 1, 2} : new int[]{2, 1, 2, 1};
         }
@@ -78,46 +78,73 @@ class FieldTest {
     }
 
     @Test
+    void move() {
+        field.add(0, 3);
+        assertTrue(field.move(0, 3, Direction.LEFT));
+        assertTrue(Arrays.equals(new int[]{1, 0, 0, 0}, field.getField()[0]));
+    }
+
+    @Test
+    void move1() {
+        field.add(0, 3);
+        field.add(0, 0);
+        assertTrue(field.move(0, 3, Direction.LEFT));
+        assertTrue(Arrays.equals(new int[]{2, 0, 0, 0}, field.getField()[0]));
+    }
+
+    @Test
+    void move2() {
+        field.add(0, 2);
+        field.add(0, 0, 2);
+        assertTrue(field.move(0, 2, Direction.LEFT));
+        assertTrue(Arrays.equals(new int[]{2, 1, 0, 0}, field.getField()[0]));
+    }
+    @Test
+    void move3() {
+        field.add(0, 1);
+        field.add(0, 0, 2);
+        assertFalse(field.move(0, 1, Direction.LEFT));
+    }
+
+    @Test
+    void moveAll() {
+        field.add(0, 3);
+        field.moveAll(Direction.LEFT);
+        assertEquals((int) field.get(0, 0), 2);
+    }
+    @Test
+    void moveAll1() {
+        field.add(0, 0);
+        field.add(0, 3);
+        assertTrue(field.moveAll(Direction.LEFT));
+        assertTrue(Arrays.equals(new int[]{2, 0, 0, 0}, field.getField()[0]));
+    }
+    @Test
+    void moveAll2() {
+        field.add(0, 0, 2);
+        field.add(0, 3);
+        assertTrue(field.moveAll(Direction.LEFT));
+        assertTrue(Arrays.equals(new int[]{2, 1, 0, 0}, field.getField()[0]));
+    }
+    @Test
+    void moveAll3() {
+        field.add(0, 0,2);
+        field.add(0, 1);
+        field.add(0, 2);
+        field.add(0, 3);
+        field.moveAll(Direction.LEFT);
+        assertTrue(Arrays.equals(new int[]{2, 2, 1, 0}, field.getField()[0]));
+
+        assertFalse(field.moveAll(Direction.UP));
+    }
+
+    @Test
     void testToString() {
-        field.clear();
         assertEquals("0, 0, 0, 0\n0, 0, 0, 0\n0, 0, 0, 0\n0, 0, 0, 0\n", field.toString());
         field.add(0, 0);
         field.add(1, 1);
         field.add(2, 2);
         field.add(3, 3);
         assertEquals("1, 0, 0, 0\n0, 1, 0, 0\n0, 0, 1, 0\n0, 0, 0, 1\n", field.toString());
-    }
-
-    @Test
-    void moveAll() {
-        field.clear();
-        field.add(0, 3);
-        field.moveAll(Sides.LEFT);
-        assertEquals((int) field.get(0, 0), 2);
-        field.add(0, 3);
-        field.moveAll(Sides.LEFT);
-        assertTrue(Arrays.equals(new int[]{2, 0, 0, 0}, field.getField()[0]));
-        field.add(0, 3);
-        field.moveAll(Sides.LEFT);
-        assertTrue(Arrays.equals(new int[]{2, 1, 0, 0}, field.getField()[0]));
-        field.add(0, 2);
-        field.add(0, 3);
-        field.moveAll(Sides.LEFT);
-        assertTrue(Arrays.equals(new int[]{2, 2, 1, 0}, field.getField()[0]));
-    }
-
-    @Test
-    void move() {
-        field.clear();
-        field.add(0, 3);
-        assertTrue(field.move(0, 3, Sides.LEFT));
-        assertTrue(Arrays.equals(new int[]{1, 0, 0, 0}, field.getField()[0]));
-        field.add(0, 3);
-        assertTrue(field.move(0, 3, Sides.LEFT));
-        assertTrue(Arrays.equals(new int[]{2, 0, 0, 0}, field.getField()[0]));
-        field.add(0, 2);
-        assertTrue(field.move(0, 2, Sides.LEFT));
-        assertTrue(Arrays.equals(new int[]{2, 1, 0, 0}, field.getField()[0]));
-        assertFalse(field.move(0, 1, Sides.LEFT));
     }
 }

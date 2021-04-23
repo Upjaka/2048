@@ -1,6 +1,6 @@
 package Model;
 
-public enum Sides {
+public enum Direction {
     RIGHT,
     LEFT,
     UP,

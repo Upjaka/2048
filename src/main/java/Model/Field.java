@@ -5,11 +5,13 @@ import java.util.*;
 public class Field {
     private final int size = 4;
     private final int[][] field;
+    private final int[][] previous;
     private final Random random;
 
     public Field() {
         random = new Random();
         field = new int[size][size];
+        previous = new int[size][size];
         for (int[] ints : field) {
             Arrays.fill(ints, 0);
         }
@@ -18,10 +20,15 @@ public class Field {
     }
 
     public Integer get(int i, int j) {
-        return pow(field[i][j]);
+        return pow(field[j][i]);
+    }
+
+    public Integer getPrevious(int i, int j) {
+        return pow(previous[j][i]);
     }
 
     private int pow(int x) {
+        if (x == 0) return 0;
         int result = 1;
         for (int i = 0; i < x; i++) {
             result *= 2;
@@ -34,8 +41,12 @@ public class Field {
     }
 
     public void add(int x, int y) {
+        add(x, y, 1);
+    }
+
+    public void add(int x, int y, int n) {
         if (x >= 0 && x < size && y >= 0 && y < size) {
-            field[x][y] = 1;
+            field[x][y] = n;
         }
     }
 
@@ -84,44 +95,51 @@ public class Field {
         for (int[] ints : field) Arrays.fill(ints, 0);
     }
 
-    public void moveAll(Sides side) {
+    public void makeMove(Direction dir) {
+        for (int i = 0; i < size; i++) {
+            previous[i] = Arrays.copyOf(field[i], size);
+        }
+        if (moveAll(dir)) addRandom();
+    }
+
+    public boolean moveAll(Direction dir) {
         boolean modified = false;
-        switch (side) {
+        switch (dir) {
             case RIGHT -> {
                 for (int i = 0; i < size; i++) {
                     for (int j = size - 2; j >= 0; j--) {
-                        if (field[i][j] != 0 && move(i, j, Sides.RIGHT)) modified = true;
+                        if (field[i][j] != 0 && move(i, j, Direction.RIGHT)) modified = true;
                     }
                 }
             }
             case LEFT -> {
                 for (int i = 0; i < size; i++) {
                     for (int j = 1; j < size; j++) {
-                        if (field[i][j] != 0 && move(i, j, Sides.LEFT)) modified = true;
+                        if (field[i][j] != 0 && move(i, j, Direction.LEFT)) modified = true;
                     }
                 }
             }
             case UP -> {
                 for (int i = 1; i < size; i++) {
                     for (int j = 0; j < size; j++) {
-                        if (field[i][j] != 0 && move(i, j, Sides.UP)) modified = true;
+                        if (field[i][j] != 0 && move(i, j, Direction.UP)) modified = true;
                     }
                 }
             }
             case DOWN -> {
                 for (int i = size - 2; i >= 0; i--) {
                     for (int j = 0; j < size; j++) {
-                        if (field[i][j] != 0 && move(i, j, Sides.DOWN)) modified = true;
+                        if (field[i][j] != 0 && move(i, j, Direction.DOWN)) modified = true;
                     }
                 }
             }
         }
-        if (modified) addRandom();
+        return modified;
     }
 
-    public boolean move(int x, int y, Sides side) {
+    public boolean move(int x, int y, Direction dir) {
         int[] newXY = new int[]{x, y};
-        switch (side) {
+        switch (dir) {
             case DOWN -> {
                 for (int i = x + 1; i <= size; i++) {
                     if (i == size) {
@@ -175,7 +193,7 @@ public class Field {
         int sum = 0;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (field[i][j] != 0) sum += Math.pow(2.0, field[i][j]);
+                if (field[i][j] != 0 && field[i][j] != 1) sum += Math.pow(2.0, field[i][j]);
             }
         }
         return String.valueOf(sum);

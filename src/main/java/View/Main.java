@@ -18,7 +18,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/GameScreen.fxml"));
-
         Scene startScene = new Scene(root, 400, 570);
         stage = primaryStage;
         stage.setScene(startScene);
