@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
 public class FXController {
@@ -17,9 +17,7 @@ public class FXController {
     private static Label[][] labels;
 
     @FXML
-    private Label gameOver;
-    @FXML
-    private Rectangle gameOverBackground;
+    private StackPane gameOver;
     @FXML
     private Button restartButton;
     @FXML
@@ -28,6 +26,7 @@ public class FXController {
     private Label scores;
 
     public void startButtonClicked() {
+        gameOver.setVisible(false);
         restartButton.setText("RESTART");
         field = new Field();
         labels = new Label[field.getSize()][field.getSize()];
@@ -45,7 +44,6 @@ public class FXController {
     public void backButtonClicked() {
         field.back();
         updateScene();
-        gameOverBackground.setVisible(false);
         gameOver.setVisible(false);
     }
 
@@ -67,27 +65,26 @@ public class FXController {
         }
         scores.setText("Scores: " + field.getScores());
         if (field.isLose()) {
-            gameOverBackground.setVisible(true);
             gameOver.setVisible(true);
         }
-    }
-
-    private void createCheepAnimation(int i, int j) {
-        ScaleTransition st = new ScaleTransition(Duration.millis(100), labels[i][j]);
-        st.setFromX(0.1);
-        st.setToX(1.0);
-        st.setFromY(0.1);
-        st.setToY(1.0);
-        st.play();
     }
 
     private void stylizeLabel(int i, int j) {
         if (field.get(i, j) != 0) {
             labels[i][j].setText(field.get(i, j).toString());
             labels[i][j].getStyleClass().addAll("chip", "chip" + field.get(i, j));
-            if (!field.getPrevious(i, j).equals(field.get(i, j))) createCheepAnimation(i, j);
+            if (!field.getPrevious(i, j).equals(field.get(i, j))) spawnCheepAnimation(i, j);
         } else {
             labels[i][j].setText("");
         }
+    }
+
+    private void spawnCheepAnimation(int i, int j) {
+        ScaleTransition st = new ScaleTransition(Duration.millis(100), labels[i][j]);
+        st.setFromX(0.1);
+        st.setToX(1.0);
+        st.setFromY(0.1);
+        st.setToY(1.0);
+        st.play();
     }
 }

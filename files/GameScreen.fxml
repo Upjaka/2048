@@ -25,11 +25,11 @@
                 <Button fx:id="restartButton" onAction="#startButtonClicked" styleClass="startButton" text="START GAME"
                         AnchorPane.bottomAnchor="15" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="85">
                 </Button>
-                <Label fx:id="scores" styleClass="infoLabel" text="Scores:"
-                       AnchorPane.rightAnchor="0" AnchorPane.topAnchor="32">
+                <Label fx:id="scores" styleClass="infoLabel" text="Scores:" AnchorPane.rightAnchor="0"
+                       AnchorPane.topAnchor="32">
                 </Label>
-                <Button styleClass="startButton" text="BACK" onAction="#backButtonClicked"
-                        AnchorPane.bottomAnchor="15" AnchorPane.rightAnchor="0"/>
+                <Button onAction="#backButtonClicked" styleClass="startButton" text="BACK" AnchorPane.bottomAnchor="15"
+                        AnchorPane.rightAnchor="0"/>
             </AnchorPane>
             <StackPane styleClass="stackPane">
                 <ImageView fitHeight="300.0" fitWidth="300.0">
@@ -49,8 +49,10 @@
                         <RowConstraints prefHeight="65.0"/>
                     </rowConstraints>
                 </GridPane>
-                <Rectangle fx:id="gameOverBackground" fill="WHITE" height="300.0" opacity="0.66" visible="false" width="300.0"/>
-                <Label fx:id="gameOver" styleClass="gameOver" text="Game Over" visible="false"/>
+                <StackPane fx:id="gameOver" prefHeight="300.0" prefWidth="300.0" visible="false">
+                    <Rectangle fill="WHITE" height="300.0" opacity="0.66" width="300.0"/>
+                    <Label styleClass="gameOver" text="Game Over"/>
+                </StackPane>
             </StackPane>
         </VBox>
     </center>

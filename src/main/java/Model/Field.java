@@ -65,9 +65,8 @@ public class Field {
                     if (n == 0) {
                         field[i][j] = 1;
                         return;
-                    } else {
-                        n--;
                     }
+                    n--;
                 }
             }
         }
@@ -207,14 +206,25 @@ public class Field {
         }
     }
 
-    public String getScores() {
+    /**
+     * Правила подсчета очков:
+     * Каждый раз при соединении двух клеток, сумма очков увеличивается на значение, получившееся при объединении
+     * Это равносильно тому, что мы представляем каждую клетку как сумму ее собственного значения и значений двух
+     * клеток, из которых она поулчилась
+     */
+    public Integer getScores() {
         int sum = 0;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (field[i][j] != 0 && field[i][j] != 1) sum += Math.pow(2.0, field[i][j]);
+                sum += cellWeight(field[i][j]);
             }
         }
-        return String.valueOf(sum);
+        return sum;
+    }
+
+    private Integer cellWeight(int n) {
+        if (n == 0 || n == 1) return 0;
+        return n == 2 ? 4 : cellWeight(n - 1) * 2 + pow(n);
     }
 
     public int getSize() {
