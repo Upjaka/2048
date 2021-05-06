@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
@@ -16,6 +17,10 @@ public class FXController {
     private static Field field;
     private static Label[][] labels;
 
+    @FXML
+    private Button backButton;
+    @FXML
+    private BorderPane border;
     @FXML
     private StackPane gameOver;
     @FXML
@@ -35,10 +40,12 @@ public class FXController {
             for (int j = 0; j < field.getSize(); j++) {
                 labels[i][j] = new Label();
                 gridPane.add(labels[i][j], i, j);
-                stylizeLabel(i, j) ;
+                stylizeLabel(i, j);
             }
         }
         scores.setText("Scores: " + field.getScores());
+        backButton.setOnAction(e -> backButtonClicked());
+        border.setOnKeyReleased(this::keyReleased);
     }
 
     public void backButtonClicked() {

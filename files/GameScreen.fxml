@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#keyReleased" styleClass="background"
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" styleClass="background"
             stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="View.FXController">
+            fx:id="border" fx:controller="View.FXController">
     <top>
         <Label styleClass="title" text="2048" BorderPane.alignment="CENTER"/>
     </top>
@@ -28,7 +28,7 @@
                 <Label fx:id="scores" styleClass="infoLabel" text="Scores:" AnchorPane.rightAnchor="0"
                        AnchorPane.topAnchor="32">
                 </Label>
-                <Button onAction="#backButtonClicked" styleClass="startButton" text="BACK" AnchorPane.bottomAnchor="15"
+                <Button fx:id="backButton" styleClass="startButton" text="BACK" AnchorPane.bottomAnchor="15"
                         AnchorPane.rightAnchor="0"/>
             </AnchorPane>
             <StackPane styleClass="stackPane">
