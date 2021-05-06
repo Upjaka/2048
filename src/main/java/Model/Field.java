@@ -51,25 +51,15 @@ public class Field {
     }
 
     public void addRandom() {
-        if (isFull()) return;
-        int count = 0;
-        for (int[] ints : field) {
-            for (int i : ints) {
-                if (i == 0) count++;
-            }
-        }
-        int n = random.nextInt(count);
+        List<Integer> empty = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (field[i][j] == 0) {
-                    if (n == 0) {
-                        field[i][j] = 1;
-                        return;
-                    }
-                    n--;
-                }
+                if (field[i][j] == 0)
+                    empty.add(i * size + j);
             }
         }
+        int n = empty.get(random.nextInt(empty.size()));
+        field[n / size][n % size] = 1;
     }
 
     public boolean isFull() {
